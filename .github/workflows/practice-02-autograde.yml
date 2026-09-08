@@ -29,6 +29,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
+          # actions/checkout@v4 hard-blocks checking out a fork's ref in a
+          # pull_request_target workflow by default (the "pwn request"
+          # guard) — this is safe to opt into ONLY because nothing below
+          # ever executes the checked-out content; it's read with grep/
+          # test -f as inert data. Never add a step that runs student
+          # bash/js/Makefile here.
+          allow-unsafe-pr-checkout: true
 
       - name: Grade the PR
         env:
