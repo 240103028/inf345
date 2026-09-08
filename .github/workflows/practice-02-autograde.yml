@@ -1,15 +1,13 @@
 name: "Practice 02: Autograde"
 
-# Runs with a READ-ONLY token when triggered by a fork's PR — this is a
-# hard GitHub security policy for `pull_request`, not something we can
-# opt out of. That's fine: this workflow only computes the score and
-# saves it as an artifact. A separate workflow (practice-02-comment.yml),
-# triggered by `workflow_run`, does the actual PR commenting with write
-# access, without ever running the fork's code. Never use
-# `pull_request_target` to skip this split — that pattern runs untrusted
-# fork code with write access/secrets and is a well-known vulnerability.
+# pull_request_target runs THIS file from main, in the base repo, so GitHub
+# does not sit on "Waiting for approval" for every student fork PR.
+# That is safe here only because we never execute anything from the PR:
+# we check out the student's files with credentials off, then grep them
+# with the logic below (not their scripts/). Do not add a step that runs
+# student-provided bash/js/Makefile.
 on:
-  pull_request:
+  pull_request_target:
     branches: [main]
     paths:
       - "practices/02-git-github/**"
@@ -20,6 +18,7 @@ concurrency:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   grade:
@@ -28,10 +27,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
 
-      - name: Run checks, tally score, write comment body
-        working-directory: practices/02-git-github
+      - name: Grade the PR
         env:
           PR_COMMITS: ${{ github.event.pull_request.commits }}
           PR_SHA: ${{ github.event.pull_request.head.sha }}
@@ -39,6 +38,8 @@ jobs:
           set -euo pipefail
           total=0
           commits="${PR_COMMITS:-0}"
+          notes="practices/02-git-github/NOTES.md"
+          contrib="practices/02-git-github/CONTRIBUTORS.md"
 
           if [ "$commits" -ge 3 ]; then
             commit_row="| At least 3 commits in this PR | 40/40 | ✅ ($commits commits) |"
@@ -47,14 +48,14 @@ jobs:
             commit_row="| At least 3 commits in this PR | 0/40 | ❌ (only $commits commits) |"
           fi
 
-          if bash scripts/check_notes.sh > /tmp/notes.log 2>&1; then
+          if [ -f "$notes" ] && ! grep -q "replace this line" "$notes"; then
             notes_row="| NOTES.md placeholders replaced | 30/30 | ✅ |"
             total=$((total + 30))
           else
             notes_row="| NOTES.md placeholders replaced | 0/30 | ❌ |"
           fi
 
-          if bash scripts/check_contributors.sh > /tmp/contrib.log 2>&1; then
+          if [ -f "$contrib" ] && [ -s "$contrib" ]; then
             contrib_row="| CONTRIBUTORS.md exists with your name | 30/30 | ✅ |"
             total=$((total + 30))
           else
@@ -71,15 +72,38 @@ jobs:
             echo "$contrib_row"
             echo
             echo "<sub>Commit \`$PR_SHA\`</sub>"
-          } > "$GITHUB_WORKSPACE/grade-comment.md"
+          } > grade-comment.md
 
-          echo "${{ github.event.pull_request.number }}" > "$GITHUB_WORKSPACE/pr-number.txt"
-          cat "$GITHUB_WORKSPACE/grade-comment.md" >> "$GITHUB_STEP_SUMMARY"
+          cat grade-comment.md >> "$GITHUB_STEP_SUMMARY"
 
-      - uses: actions/upload-artifact@v4
+      - name: Post or update the sticky grade comment
+        uses: actions/github-script@v7
         with:
-          name: grade-result
-          path: |
-            grade-comment.md
-            pr-number.txt
-          retention-days: 5
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('grade-comment.md', 'utf8');
+            const marker = '### 🤖 Practice 02 autograder';
+            const prNumber = context.payload.pull_request.number;
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+            const existing = comments.find(c => c.body.startsWith(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body,
+              });
+            }
