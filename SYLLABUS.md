@@ -46,8 +46,9 @@ engineering today. The course runs partly on Red Hat Academy cloud labs
 (provided free to SDU students through the university's Red Hat Academy
 partnership) and partly on open-source tooling students can keep using
 without any subscription. Containers and Automation are graded directly
-from Red Hat Academy lab completion; the CI/CD lab and the capstone are
-graded automatically within minutes of submission via GitHub Classroom.
+from Red Hat Academy lab completion; the CI/CD lab, weekly practices, and
+the capstone are graded automatically within minutes of a pull request
+from your fork of this repository.
 
 ## Instructor(s)
 
@@ -107,7 +108,7 @@ a 1-hour practice session (~2h lecture + 1h practice per week) — see
 - [x] Question & Answer
 - [x] Discussion
 - [x] Problem Solving (hands-on labs)
-- [x] Other — autograded lab exercises via GitHub Classroom
+- [x] Other — autograded exercises via pull requests on GitHub
 
 ## Reading List
 
@@ -131,10 +132,18 @@ of Practice on Assessments.*
 | Lab 01 — Containers | Graded entirely from RHA **DO188** lab completion (instructor-assigned via the RHA portal) — no GitHub submission | 1 | 15 |
 | Lab 02 — Automation | Graded entirely from RHA **RH294** lab completion (instructor-assigned via the RHA portal) — no GitHub submission | 1 | 15 |
 | Lab 03 — CI/CD | Autograded GitHub Actions pipeline (no RHA equivalent exists for this topic) | 1 | 15 |
-| Weekly practice sessions | 1-hour in-class exercise each lesson, autograded via GitHub Classroom | ~14 | 10 |
+| Weekly practice sessions | 1-hour in-class exercise each lesson, autograded on your pull request | ~14 | 10 |
 | Attendance | Present and participating in lecture + practice | ~15 | 5 |
 | Final Exam — Capstone Project | Mandatory final assessment, delivered in project format (per policy, a project may substitute for a written exam): integration project + demo | 1 | 40 |
 | **Total** | | | **100** |
+
+**How you submit GitHub work:** fork `weeebdev/inf345` once. Before each
+practice session or GitHub-native lab, **sync your fork** with this
+repository (on your fork's page: **Sync fork** → Update branch) so you
+have this week's files. Do the work on your fork, then open a Pull
+Request back to `weeebdev/inf345`. GitHub Actions grades the PR. The PR
+is not meant to be merged — it is how the check runs. Labs 01 and 02 are
+the exception: those are graded from Red Hat Academy, not GitHub.
 
 A university-wide Final Exam is a mandatory assessment component. This
 course exercises the policy allowance to deliver it as a project rather
@@ -169,8 +178,8 @@ Students must ensure that all work completed for this course is their own
 work. Any evidence of plagiarism, data falsification, fabrication,
 collusion, self-plagiarism and/or other forms of academic misconduct will
 be penalised. Further information can be found in the Code of Practice on
-Academic Integrity. Autograder scores come from your own repository's
-Actions runs — discussing concepts and approaches with classmates is
+Academic Integrity. Autograder scores come from the Actions run on your
+pull request — discussing concepts and approaches with classmates is
 encouraged; submitting code you didn't write or understand is not, and
 capstone demos include being able to explain your own work.
 

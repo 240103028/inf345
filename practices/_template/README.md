@@ -15,7 +15,7 @@ lecture. No new concepts.>
 ## Definition of done
 
 - [ ] <concrete, checkable item — commit count, file content, etc.>
-- [ ] Pushed before the session ends (this is also your attendance signal)
+- [ ] PR opened before the session ends (this is also your attendance signal)
 
 ## Grading
 

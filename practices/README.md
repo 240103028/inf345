@@ -7,7 +7,7 @@ attendance line). Practice sessions are graded differently from labs:
 | | Labs | Practice sessions |
 |---|---|---|
 | When | Take-home, days to finish | In-class, ~1 hour, synchronous |
-| Where | RHA cloud labs (01/02) or GitHub (03/Capstone) | GitHub Classroom *(stopgap until the org is approved: fork + PR into this repo)* |
+| Where | RHA cloud labs (01/02) or a fork of this repo (03/Capstone) | Fork of this repo + pull request |
 | Grading | RHA completion or a full build/run autograder | A fast, lightweight autograder — checks git history and file content, not builds |
 | Purpose | Depth on one module's tool | Reinforce that lesson's specific skill, immediately |
 
@@ -20,20 +20,17 @@ class ends in 10 minutes. Every practice autograder in this repo:
 - Never builds a container image or spins up infrastructure.
 - Only checks git history (commit count, file diffs) and final file
   content — this runs in seconds, not minutes.
-- Uses `workflow_dispatch` + `push` triggers with `concurrency:
-  cancel-in-progress: true` (same minute-budget rules as labs — see
-  `labs/README.md`), though at this cost profile a whole semester of
-  practice sessions barely registers against the GitHub Free tier's
-  2,000 minutes/month.
+- Uses `pull_request` triggers with `concurrency: cancel-in-progress:
+  true` (same minute-budget rules as labs — see `labs/README.md`).
 
 ## Attendance signal
 
-A practice session's final push, timestamped within the class window,
+A practice session's pull request, opened within the class window,
 doubles as the attendance record for that lesson — a student who didn't
-push didn't attend, from a grading standpoint. This is a *signal*, not
-strict enforcement: if a student has a real reason for a late push,
-that's a normal instructor judgment call, not something the autograder
-polices.
+open a PR didn't attend, from a grading standpoint. This is a *signal*,
+not strict enforcement: if a student has a real reason for a late
+submission, that's a normal instructor judgment call, not something the
+autograder polices.
 
 ## `_template/`
 

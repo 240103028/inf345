@@ -242,8 +242,22 @@ practice session in this course follows this loop.
 
 <div v-click class="mt-4 p-3 rounded bg-blue-500/10 text-sm">
 Heads up: forks of a public repo are public too — anyone can see your PR.
-Fine for practice sessions, not something to worry about copying from.
+Don't put anything in a submission you wouldn't want classmates to see.
 </div>
+
+---
+
+# Keep your fork in sync
+
+<v-clicks>
+
+- You fork <code>weeebdev/inf345</code> **once**.
+- Before every later practice or GitHub lab, **sync your fork** so you
+  have this week's files.
+- On your fork's GitHub page: <b>Sync fork</b> → Update branch.
+- Skip this and you'll be working on last week's repo.
+
+</v-clicks>
 
 ---
 layout: section
@@ -273,7 +287,7 @@ transition: slide-left
 
 <v-clicks>
 
-- [ ] Fork <code>weeebdev/inf345</code> (button on GitHub, or <code>gh repo fork</code>)
+- [ ] Fork <code>weeebdev/inf345</code> (or <b>Sync fork</b> if you already have one)
 - [ ] Make 3 separate commits in <code>practices/02-git-github/</code>
 - [ ] Open a PR back to <code>weeebdev/inf345</code> — that triggers the autograder
 - [ ] PR open before the session ends — this is also your attendance signal

@@ -8,7 +8,7 @@ differently:
 | Type | Where the work happens | What's graded |
 |---|---|---|
 | **RHA labs** (Containers, Automation) | Entirely on Red Hat Academy's own cloud lab environment (DO188, RH294) — rha.ole.redhat.com | The instructor assigns the grade directly from RHA lab completion. There is nothing to submit in this repo — each lab's README just points you to the RHA lab and explains what it's grading. |
-| **GitHub-native labs** (CI/CD, Capstone) | Entirely in your own repo | A real, autograded build-and-run check via GitHub Classroom + Actions — this *is* the grade, because there's no RHA equivalent to lean on |
+| **GitHub-native labs** (CI/CD, Capstone) | Your fork of this repo | A real, autograded build-and-run check on your pull request — this *is* the grade, because there's no RHA equivalent to lean on |
 
 ## Lab list
 
@@ -26,8 +26,7 @@ differently:
 Only Labs 03 and Capstone run any CI at all, so the only minute cost is
 theirs. We are **not** assuming GitHub Education/Team approval is in
 place — every workflow is designed to run comfortably inside GitHub
-Free's **2,000 shared Actions minutes/month per organization** (the org
-hosting the Classroom, shared across every student repo in it). Rules
+Free's **2,000 shared Actions minutes/month**. Rules
 applied to every GitHub-native workflow:
 
 1. **`ubuntu-latest` only.** Windows runners cost 2x minutes, macOS costs

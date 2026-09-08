@@ -5,13 +5,12 @@ loop from today's lecture, for real, on your own repo.
 
 **Timebox:** ~25 min of actual work within today's session.
 
-> **Submission (stopgap, until our GitHub Classroom 50 org is approved):**
-> fork this repo, do the task below inside your fork's
-> `practices/02-git-github/` folder, then open a Pull Request back to
-> `weeebdev/inf345` (`main` branch). GitHub Actions grades your PR
-> automatically. **Note: your fork and PR will be public** — don't put
-> anything in `NOTES.md` you wouldn't want classmates to see. Your PR
-> doesn't need to (and won't) be merged — it's just how the check runs.
+> **How to submit:** do this task on your fork of this repo, then open a
+> Pull Request to `weeebdev/inf345` (`main`). GitHub Actions grades the
+> PR. Already have a fork? Click **Sync fork** on your fork first so you
+> have this week's files. Forks and PRs are public — don't put anything
+> in `NOTES.md` you wouldn't want classmates to see. Your PR does not
+> need to be merged; it's how the check runs.
 
 ## Task
 

@@ -27,7 +27,7 @@ layout: default
 <v-clicks>
 
 - What command creates a new commit from staged changes? <span v-click class="opacity-60">(`git commit`)</span>
-- How do you submit a lab in this course? <span v-click class="opacity-60">(push to your GitHub Classroom repo)</span>
+- How do you submit GitHub work in this course? <span v-click class="opacity-60">(sync your fork, then open a PR)</span>
 - How fast do you get feedback on a lab submission?
   <span v-click class="opacity-60">(Minutes — via GitHub Actions autograding)</span>
 

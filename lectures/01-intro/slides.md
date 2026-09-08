@@ -271,7 +271,7 @@ pie showData
   "Final Exam — Capstone" : 40
 ```
 
-<div class="text-sm opacity-70 mt-2">Working proposal — see SYLLABUS.md for the current numbers.</div>
+<div class="text-sm opacity-70 mt-2">Full detail: <code>SYLLABUS.md</code>.</div>
 
 ---
 ---
@@ -300,10 +300,12 @@ structure just work better for everyone.
 
 <v-clicks>
 
-- Every lab lives in your own GitHub Classroom repo.
-- Push your work → GitHub Actions runs the autograder → you get a
-  pass/fail/partial score **within minutes**.
+- Fork this repo, do the work, open a Pull Request.
+- GitHub Actions runs the autograder → you get a pass/fail/partial
+  score **within minutes**.
 - No submitting into a void and waiting for grades next week.
+- Labs 01 and 02 are the exception — those grades come from Red Hat
+  Academy, not GitHub.
 
 </v-clicks>
 
@@ -316,7 +318,6 @@ layout: default
 <div class="flex items-center gap-3"><logos-git-icon class="text-2xl" /><logos-github-icon class="text-2xl" /><span>Lesson 2 is Git & GitHub — come with these ready:</span></div>
 
 - [ ] Make sure you have a GitHub account
-- [ ] Accept the GitHub Classroom invite (link posted separately)
 - [ ] Install Docker Desktop **or** Podman Desktop on your laptop
 - [ ] Read `SYLLABUS.md` in full
 
